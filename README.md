@@ -6,6 +6,8 @@ This is mostly an impentation of the DDA (Digital Differential Analyzer) algorit
 
 ![preview](https://user-images.githubusercontent.com/8725004/52869265-8c6d7980-3145-11e9-917d-47a5057daa6f.png)
 
+There is also an helper in the right-upper corner to help you visualizing the "rays" shot by the DDA algorithm.
+
 Textures are ripped from Wolfenstein 3D.
 
 # Limitation

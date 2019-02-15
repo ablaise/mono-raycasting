@@ -2,7 +2,7 @@
 
 A very simple raycasting engine created with MonoGame.
 
-This is mostly an impentation of the DDA (Digital Differential Analyzer) algorithm that works with basic mathematical knowledge using very simple trigonometry.
+This is mostly an implementation of the DDA (Digital Differential Analyzer) algorithm that works with basic mathematical knowledge using very simple trigonometry.
 
 ![preview](https://user-images.githubusercontent.com/8725004/52869265-8c6d7980-3145-11e9-917d-47a5057daa6f.png)
 

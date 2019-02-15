@@ -64,20 +64,17 @@ namespace MonoRayCasting
         {
             base.Initialize();
 
-            // 
+            // initialize the player with a position and a FOV
             player = new Player(map, new Point(64 * 5, 64 * 2), 133);
+
+            // initialize the DDA algorithm
+            dda = new DDA(map, player.FOV);
+            dda.fixFishEyeEffect = true;
 
             // projection plane
             plane = (Width / 2) / Math.Tan(Utils.ToRad(player.FOV / 2));
-
-            //
-            dda = new DDA(map, player.FOV);
-            dda.fixFishEyeEffect = true;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -98,10 +95,6 @@ namespace MonoRayCasting
             textures = new Texture2D[] { null, brickWall, eagleWall, redBrick };
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="gameTime"></param>
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
@@ -115,10 +108,6 @@ namespace MonoRayCasting
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="gameTime"></param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
@@ -227,9 +216,9 @@ namespace MonoRayCasting
         /// <param name="scale">scale of the mini-map, 2 divide the map by two</param>
         private void DrawMinimap(Point position, double scale)
         {
-            // here the fisheye effect has to be set to false, so we save the previous value to restore it later
+            // we save the previous value to restore it later
             bool fishEyeEffect = dda.fixFishEyeEffect;
-            dda.fixFishEyeEffect = false;
+            dda.fixFishEyeEffect = !dda.fixFishEyeEffect;
 
             int xx   = (int)(player.position.X / scale + position.X);
             int yy   = (int)(player.position.Y / scale + position.Y);
@@ -242,10 +231,10 @@ namespace MonoRayCasting
             {
                 for (int x = 0; x < map.GetLength(0); x++)
                 {
-                    //
+                    // draw a black or red grid depending on the kind of tile
                     DrawBorder(new Rectangle(y * size + (int)position.X, x * size + (int)position.Y, size, size), 1, (map[x, y] > 0) ? Color.Black : Color.Red);
 
-                    // 
+                    // draw a black square if the player is not allowed to walk on the tile
                     if (map[x, y] > 0)
                     {
                         spriteBatch.Draw(pixel, new Rectangle(y * size + (int)position.X, x * size + (int)position.Y, size, size), Color.Black);
@@ -289,11 +278,11 @@ namespace MonoRayCasting
 
             if (DEBUG)
             {
-                if (keyboard.IsKeyDown(Keys.A))
+                if (keyboard.IsKeyDown(Keys.F1))
                 {
                     dda.fixFishEyeEffect = true;
                 }
-                else if (keyboard.IsKeyDown(Keys.Z))
+                else if (keyboard.IsKeyDown(Keys.F2))
                 {
                     dda.fixFishEyeEffect = false;
                 }

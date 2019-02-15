@@ -10,6 +10,10 @@ There is also an helper in the right-upper corner to help you visualizing the "r
 
 Textures are ripped from Wolfenstein 3D.
 
+# Controls
+
+Press the arrow keys to move the camera. You can also press F1 to enable the fisheye effect, and F2 to disable.
+
 # Limitation
 
 This is a prototype, it's still a good way to learn how old games like Doom or Wolfenstein 3D worked. For now, there is a lot we can improve.

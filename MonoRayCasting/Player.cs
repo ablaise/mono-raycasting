@@ -41,25 +41,36 @@ namespace MonoRayCasting
 
             if (keyboard.IsKeyDown(Keys.Up))
             {
-                if (map[(int)cell.Y, (int)(cell.X + direction.X)] == 0) position.X += Math.Cos((float)Utils.ToRad(angle)) * speed;
-                if (map[(int)(cell.Y + direction.Y), (int)cell.X] == 0) position.Y += Math.Sin(Utils.ToRad(angle)) * speed;
+                if (map[(int)cell.Y, (int)(cell.X + direction.X)] == 0)
+                {
+                    position.X += Math.Cos((float)Utils.ToRad(angle)) * speed;
+                }
+
+                if (map[(int)(cell.Y + direction.Y), (int)cell.X] == 0)
+                {
+                    position.Y += Math.Sin(Utils.ToRad(angle)) * speed;
+                }
             }
             else if (keyboard.IsKeyDown(Keys.Down))
             {
-                if (map[(int)cell.Y, (int)(cell.X - direction.X)] == 0) position.X -= Math.Cos(Utils.ToRad(angle)) * speed;
-                if (map[(int)(cell.Y - direction.Y), (int)cell.X] == 0) position.Y -= Math.Sin(Utils.ToRad(angle)) * speed;
+                if (map[(int)cell.Y, (int)(cell.X - direction.X)] == 0)
+                {
+                    position.X -= Math.Cos(Utils.ToRad(angle)) * speed;
+                }
+
+                if (map[(int)(cell.Y - direction.Y), (int)cell.X] == 0)
+                {
+                    position.Y -= Math.Sin(Utils.ToRad(angle)) * speed;
+                }
             }
 
             if (keyboard.IsKeyDown(Keys.Right))
             {
                 angle += 2;
-
-                if (angle >= 360) angle -= 360;
             }
             else if (keyboard.IsKeyDown(Keys.Left))
             {
                 angle -= 2;
-                if (angle < 0) angle += 360;
             }
 
             angle = Utils.NormalizeAngle(angle);

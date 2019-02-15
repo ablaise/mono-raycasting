@@ -152,14 +152,15 @@ namespace MonoRayCasting
                 height = 64 / iteration.distance * plane;
 
                 // intersection point between the wall and the ground
-                y = Main.Height / 2 - (int)height / 2; 
+                y = Main.Height / 2 - (int)height / 2;
 
                 // wall
                 spriteBatch.Draw(
                     texture,
                     new Vector2(i, y),
                     new Rectangle((int)((side == 0) ? hit.X % 64 : hit.Y % 64), 0, 1, 64),
-                    Color.White, 0f,
+                    Color.White,
+                    0f,
                     Vector2.Zero,
                     (float)height / 64,
                     SpriteEffects.None,
@@ -171,7 +172,8 @@ namespace MonoRayCasting
                     pixel,
                     new Rectangle(i + 1, (int)(Main.Height / 2 + height / 2),
                     (int)(Main.Height / 2 + height / 2), 1),
-                    null, Color.BurlyWood,
+                    null,
+                    Color.BurlyWood,
                     (float)Utils.ToRad(90),
                     Vector2.Zero,
                     SpriteEffects.None,
@@ -183,7 +185,7 @@ namespace MonoRayCasting
                     pixel,
                     new Rectangle(i + 1, 0, y, 1),
                     null,
-                    Color.DarkSlateGray,
+                    Color.SteelBlue,
                     (float)Utils.ToRad(90),
                     Vector2.Zero,
                     SpriteEffects.None,
@@ -210,7 +212,7 @@ namespace MonoRayCasting
                     Color.White
                 );
 
-                DrawMinimap(new Point(650, 15), 4);
+                DrawMinimap(new Point(Width - 150, 20), 4);
             }
 
             spriteBatch.End();
